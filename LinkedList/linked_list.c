@@ -5,18 +5,16 @@
 linkedlist_t *CreateLinkedList() {
   linkedlist_t *list = (linkedlist_t *)malloc(sizeof(linkedlist_t));
   list->head = NULL;
+  list->firstNode = NULL;
+  list->lastNode = NULL;
   return list;
 };
 // Private get tha last node from linked list
 static node_t *getLastNodeAddress(linkedlist_t *linkedList) {
-  if (NULL == linkedList->head) {
+  if (NULL == linkedList->lastNode) {
     return NULL;
   }
-  node_t *node = linkedList->head;
-
-  while (NULL != node->next) {
-    node = node->next;
-  }
+  node_t *node = linkedList->lastNode;
   return node;
 }
 // Private create node with data and return pointer
@@ -56,8 +54,11 @@ void AppendToLinkedList(linkedlist_t *linkedList, int data) {
   if (NULL == linkedList->head) {
     node_t *node = createNode(data);
     linkedList->head = node;
+    linkedList->firstNode = node;
+    linkedList->lastNode = node;
     return;
   }
   node_t *lastNode = getLastNodeAddress(linkedList);
   lastNode->next = createNode(data);
+  linkedList->lastNode = lastNode->next;
 };
