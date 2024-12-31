@@ -8,6 +8,8 @@ typedef struct Node {
 
 typedef struct LinkedList {
   node_t *head;
+  node_t *firstNode;
+  node_t *lastNode;
 } linkedlist_t;
 
 linkedlist_t *CreateLinkedList();
