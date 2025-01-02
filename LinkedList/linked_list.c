@@ -62,3 +62,37 @@ void AppendToLinkedList(linkedlist_t *linkedList, int data) {
   lastNode->next = createNode(data);
   linkedList->lastNode = lastNode->next;
 };
+
+void AddAfter(linkedlist_t *linkedList, node_t *node, int data) {
+  if (NULL == linkedList->head) {
+    return;
+  }
+  node_t *tempNode = linkedList->head;
+
+  while (NULL != tempNode) {
+    if (tempNode == node) {
+      node_t *newNode = createNode(data);
+      newNode->next = tempNode->next;
+      tempNode->next = newNode;
+      // if node is last node update linkedlist
+      if (NULL == newNode->next) {
+        linkedList->lastNode = newNode;
+      }
+      return;
+    }
+    tempNode = tempNode->next;
+  }
+}
+node_t *GetNodeAtIndex(linkedlist_t *linkedList, size_t index) {
+  if (NULL == linkedList || NULL == linkedList->head) {
+    return NULL;
+  }
+  size_t currentIndex = 0;
+  node_t *tmpNode = linkedList->head;
+  for (; currentIndex < index; currentIndex++) {
+    tmpNode = tmpNode->next;
+  }
+  if (currentIndex != index)
+    return NULL;
+  return tmpNode;
+}
