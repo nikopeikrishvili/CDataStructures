@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 // Creates empty linked list
-linkedlist_t *CreateLinkedList() {
+linkedlist_t *SLL_create() {
   linkedlist_t *list = (linkedlist_t *)malloc(sizeof(linkedlist_t));
   list->head = NULL;
   list->firstNode = NULL;
@@ -24,7 +24,7 @@ static node_t *createNode(int data) {
   return node;
 }
 // Prind linked list
-void PrintLinkedList(linkedlist_t *linkedList) {
+void SLL_print(linkedlist_t *linkedList) {
   node_t *currentNode = linkedList->head;
   while (NULL != currentNode) {
     printf("Node value %d\n", currentNode->data);
@@ -32,7 +32,7 @@ void PrintLinkedList(linkedlist_t *linkedList) {
   }
 };
 // Free all memory allocations in linked list
-void FreeLinkedList(linkedlist_t *linkedList) {
+void SLL_free(linkedlist_t *linkedList) {
   node_t *currentNode = linkedList->head;
   if (NULL == currentNode) {
     free(linkedList);
@@ -50,7 +50,7 @@ void FreeLinkedList(linkedlist_t *linkedList) {
 };
 
 // Add data to the end to linked list
-void AppendToLinkedList(linkedlist_t *linkedList, int data) {
+void SLL_push(linkedlist_t *linkedList, int data) {
   if (NULL == linkedList->head) {
     node_t *node = createNode(data);
     linkedList->head = node;
@@ -63,7 +63,7 @@ void AppendToLinkedList(linkedlist_t *linkedList, int data) {
   linkedList->lastNode = lastNode->next;
 };
 
-void AddAfter(linkedlist_t *linkedList, node_t *node, int data) {
+void SLL_addAfter(linkedlist_t *linkedList, node_t *node, int data) {
   if (NULL == linkedList->head) {
     return;
   }
@@ -83,7 +83,7 @@ void AddAfter(linkedlist_t *linkedList, node_t *node, int data) {
     tempNode = tempNode->next;
   }
 }
-node_t *GetNodeAtIndex(linkedlist_t *linkedList, size_t index) {
+node_t *SLL_getNodeAtIndex(linkedlist_t *linkedList, size_t index) {
   if (NULL == linkedList || NULL == linkedList->head) {
     return NULL;
   }
@@ -95,4 +95,15 @@ node_t *GetNodeAtIndex(linkedlist_t *linkedList, size_t index) {
   if (currentIndex != index)
     return NULL;
   return tmpNode;
+}
+void SLL_removeAtPosition(linkedlist_t *linkedList, size_t index) {
+  size_t currentIndex = 0;
+  node_t *tmpNode = linkedList->head;
+  for (; currentIndex < index-1; currentIndex++) {
+    tmpNode = tmpNode->next;
+  }
+  //
+  node_t *nodeToRemove = tmpNode->next;
+  tmpNode->next = nodeToRemove->next;
+  nodeToRemove = NULL;
 }

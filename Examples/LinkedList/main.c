@@ -4,19 +4,21 @@
 
 int main() {
 
-  linkedlist_t *linkedList = CreateLinkedList();
+  linkedlist_t *linkedList = SLL_create();
 
-  AppendToLinkedList(linkedList, 1);
-  AppendToLinkedList(linkedList, 4);
-  AppendToLinkedList(linkedList, 5);
-  AppendToLinkedList(linkedList, 8);
-  AppendToLinkedList(linkedList, 10);
-  AppendToLinkedList(linkedList, 123);
-  node_t *index3Node = GetNodeAtIndex(linkedList, 3);
+  SLL_push(linkedList, 1);
+  SLL_push(linkedList, 4);
+  SLL_push(linkedList, 5);
+  SLL_push(linkedList, 8);
+  SLL_push(linkedList, 10);
+  SLL_push(linkedList, 123);
+  node_t *index3Node = SLL_getNodeAtIndex(linkedList, 3);
   printf("Value of node at index 3 is %d\n", index3Node->data);
 
-  PrintLinkedList(linkedList);
-  AddAfter(linkedList, index3Node, 23);
-  PrintLinkedList(linkedList);
-  FreeLinkedList(linkedList);
+  SLL_print(linkedList);
+  SLL_addAfter(linkedList, index3Node, 23);
+  SLL_print(linkedList);
+  SLL_removeAtPosition(linkedList, 4);
+  SLL_print(linkedList);
+  SLL_free(linkedList);
 }

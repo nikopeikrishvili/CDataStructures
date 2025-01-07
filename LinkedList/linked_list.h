@@ -12,15 +12,23 @@ typedef struct LinkedList {
   node_t *lastNode;
 } linkedlist_t;
 // Initialize linked List
-linkedlist_t *CreateLinkedList();
+linkedlist_t *SLL_create();
 // Helper function to print linked List
-void PrintLinkedList(linkedlist_t *linkedList);
+void SLL_print(linkedlist_t *linkedList);
 // Free heap from linked list data
-void FreeLinkedList(linkedlist_t *linkedList);
-// Add data to the end to linked list
-void AppendToLinkedList(linkedlist_t *linkedList, int data);
+void SLL_free(linkedlist_t *linkedList);
+
 // Add node after specific node
-void AddAfter(linkedlist_t *linkedList, node_t *node, int data);
+void SLL_addAfter(linkedlist_t *linkedList, node_t *node, int data);
 // Void get node at specific index
-node_t *GetNodeAtIndex(linkedlist_t *linkedList, size_t index);
+node_t *SLL_getNodeAtIndex(linkedlist_t *linkedList, size_t index);
+// Add data to the end to linked list
+void SLL_push(linkedlist_t *linkedList, int data);
+// remove node from the end of linked list
+// TODO
+void SLL_unshiftLinkedList(linkedlist_t *linkedList, int data);
+
+// Remove node at specific position
+// TODO
+void SLL_removeAtPosition(linkedlist_t *linkedList, size_t index);
 #endif
