@@ -20,5 +20,12 @@ int main() {
   SLL_print(linkedList);
   SLL_removeAtPosition(linkedList, 4);
   SLL_print(linkedList);
+  SLL_unshift(linkedList);
+  SLL_unshift(linkedList);
+  SLL_unshift(linkedList);
+  SLL_unshift(linkedList);
+  SLL_unshift(linkedList);
+  SLL_unshift(linkedList);
+  SLL_print(linkedList);
   SLL_free(linkedList);
 }

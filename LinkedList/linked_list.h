@@ -10,6 +10,7 @@ typedef struct LinkedList {
   node_t *head;
   node_t *firstNode;
   node_t *lastNode;
+  size_t size;
 } linkedlist_t;
 // Initialize linked List
 linkedlist_t *SLL_create();
@@ -26,7 +27,7 @@ node_t *SLL_getNodeAtIndex(linkedlist_t *linkedList, size_t index);
 void SLL_push(linkedlist_t *linkedList, int data);
 // remove node from the end of linked list
 // TODO
-void SLL_unshiftLinkedList(linkedlist_t *linkedList, int data);
+void SLL_unshift(linkedlist_t *linkedList);
 
 // Remove node at specific position
 // TODO
