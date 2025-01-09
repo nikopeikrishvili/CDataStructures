@@ -114,6 +114,7 @@ void SLL_removeAtPosition(linkedlist_t *linkedList, size_t index) {
   //
   node_t *nodeToRemove = tmpNode->next;
   tmpNode->next = nodeToRemove->next;
+  free(nodeToRemove);
   nodeToRemove = NULL;
   linkedList->size--;
 }
