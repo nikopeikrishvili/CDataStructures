@@ -21,11 +21,9 @@ int main() {
   SLL_removeAtPosition(linkedList, 4);
   SLL_print(linkedList);
   SLL_unshift(linkedList);
-  SLL_unshift(linkedList);
-  SLL_unshift(linkedList);
-  SLL_unshift(linkedList);
-  SLL_unshift(linkedList);
-  SLL_unshift(linkedList);
   SLL_print(linkedList);
+  node_t *found = SLL_search(linkedList, 8);
+
+  printf("Founded node is at address %p, next value is : %d\n", found, found->next->data);
   SLL_free(linkedList);
 }

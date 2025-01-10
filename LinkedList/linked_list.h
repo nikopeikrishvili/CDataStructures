@@ -26,10 +26,9 @@ node_t *SLL_getNodeAtIndex(linkedlist_t *linkedList, size_t index);
 // Add data to the end to linked list
 void SLL_push(linkedlist_t *linkedList, int data);
 // remove node from the end of linked list
-// TODO
 void SLL_unshift(linkedlist_t *linkedList);
-
 // Remove node at specific position
-// TODO
 void SLL_removeAtPosition(linkedlist_t *linkedList, size_t index);
+// Search node in linked list by value
+node_t *SLL_search(const linkedlist_t *linkedList, const int data);
 #endif
