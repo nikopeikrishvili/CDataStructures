@@ -42,3 +42,20 @@ void insertNode(Node **root, const int data) {
         }
     }
 }
+Node* getDeepestRightMostNode(Node* root) {
+ Node *temp;
+    Node* queue[100];
+    int front = -1, rear = -1;
+    queue[++rear] = root;
+    while (front != rear) {
+        temp = queue[++front];
+        if (NULL != temp->left) {
+            queue[++rear] = temp->left;
+        }
+
+        if (NULL != temp->right) {
+            queue[++rear] = temp->right;
+        }
+    }
+    return temp;
+}
