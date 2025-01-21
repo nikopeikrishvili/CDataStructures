@@ -1,5 +1,6 @@
 #include "binary_tree.h"
 
+#include <stdio.h>
 #include <stdlib.h>
 
 
@@ -90,5 +91,55 @@ void deleteDeepestRightmostNode(Node *root, Node *dNode) {
                 queue[++rear] = temp->left;
             }
         }
+    }
+}
+void delete (Node** root, int data)
+{
+    if (*root == NULL) {
+        printf("Tree is empty.\n");
+        return;
+    }
+
+    if ((*root)->left == NULL && (*root)->right == NULL) {
+        if ((*root)->data == data) {
+            free(*root);
+            *root = NULL;
+            return;
+        }
+        else {
+            printf("Node not found.\n");
+            return;
+        }
+    }
+
+    Node* temp;
+    Node* queue[100];
+    int front = -1, rear = -1;
+    queue[++rear] = *root;
+    Node* keyNode = NULL;
+
+    while (front != rear) {
+        temp = queue[++front];
+
+        if (temp->data == data) {
+            keyNode = temp;
+        }
+
+        if (temp->left != NULL) {
+            queue[++rear] = temp->left;
+        }
+
+        if (temp->right != NULL) {
+            queue[++rear] = temp->right;
+        }
+    }
+
+    if (keyNode != NULL) {
+        Node* deepestNode = getDeepestRightMostNode(*root);
+        keyNode->data = deepestNode->data;
+        deleteDeepestRightmostNode(*root, deepestNode);
+    }
+    else {
+        printf("Node not found.\n");
     }
 }
