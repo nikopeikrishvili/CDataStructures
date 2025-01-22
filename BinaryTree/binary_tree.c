@@ -143,3 +143,31 @@ void delete (Node** root, int data)
         printf("Node not found.\n");
     }
 }
+Node* search(Node* root, const int data)
+{
+    if (root == NULL) {
+        return NULL;
+    }
+
+    Node* temp;
+    Node* queue[100];
+    int front = -1, rear = -1;
+    queue[++rear] = root;
+
+    while (front != rear) {
+        temp = queue[++front];
+
+        if (temp->data == data) {
+            return temp;
+        }
+
+        if (temp->left != NULL) {
+            queue[++rear] = temp->left;
+        }
+
+        if (temp->right != NULL) {
+            queue[++rear] = temp->right;
+        }
+    }
+    return NULL;
+}
