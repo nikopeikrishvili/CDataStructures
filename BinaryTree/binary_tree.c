@@ -171,3 +171,13 @@ Node* search(Node* root, const int data)
     }
     return NULL;
 }
+void traversal(const Node* root)
+{
+    if (root == NULL) {
+        return;
+    }
+
+    traversal(root->left);
+    printf("%d ", root->data);
+    traversal(root->right);
+}
