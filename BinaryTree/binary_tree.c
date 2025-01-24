@@ -4,35 +4,35 @@
 #include <stdlib.h>
 
 
-Node *createNode(const int data) {
-    Node *newNode = (Node *) malloc(sizeof(Node));
-    newNode->data = data;
-    newNode->left = NULL;
-    newNode->right = NULL;
-    return newNode;
+BT_Node *BT_create(const int data) {
+    BT_Node *newBT_Node = (BT_Node *) malloc(sizeof(BT_Node));
+    newBT_Node->data = data;
+    newBT_Node->left = NULL;
+    newBT_Node->right = NULL;
+    return newBT_Node;
 }
 
-void insertNode(Node **root, const int data) {
-    Node *newNode = createNode(data);
+void BT_insert(BT_Node **root, const int data) {
+    BT_Node *newBT_Node = BT_create(data);
 
     if (NULL == *root) {
-        *root = newNode;
+        *root = newBT_Node;
         return;
     }
     int front = -1, rear = -1;
-    Node *queue[100];
+    BT_Node *queue[100];
     queue[++rear] = *root;
     while (front != rear) {
-        Node *temp = queue[++front];
+        BT_Node *temp = queue[++front];
 
         if (NULL == temp->left) {
-            temp->left = newNode;
+            temp->left = newBT_Node;
             return;
         } else {
             queue[++rear] = temp->left;
         }
         if (NULL == temp->right) {
-            temp->right = newNode;
+            temp->right = newBT_Node;
             return;
         } else {
             queue[++rear] = temp->right;
@@ -40,9 +40,9 @@ void insertNode(Node **root, const int data) {
     }
 }
 
-Node *getDeepestRightMostNode(Node *root) {
-    Node *temp;
-    Node *queue[100];
+BT_Node *BT_getDeepestRightMost(BT_Node *root) {
+    BT_Node *temp;
+    BT_Node *queue[100];
     int front = -1, rear = -1;
     queue[++rear] = root;
     while (front != rear) {
@@ -58,24 +58,24 @@ Node *getDeepestRightMostNode(Node *root) {
     return temp;
 }
 
-void deleteDeepestRightmostNode(Node *root, Node *dNode) {
-    Node *queue[100];
+void deleteDeepestRightmost(BT_Node *root, BT_Node *dBT_Node) {
+    BT_Node *queue[100];
     int front = -1, rear = -1;
     queue[++rear] = root;
 
     while (front != rear) {
-        Node *temp = queue[++front];
+        BT_Node *temp = queue[++front];
 
-        if (temp == dNode) {
+        if (temp == dBT_Node) {
             temp = NULL;
-            free(dNode);
+            free(dBT_Node);
             return;
         }
 
         if (temp->right != NULL) {
-            if (temp->right == dNode) {
+            if (temp->right == dBT_Node) {
                 temp->right = NULL;
-                free(dNode);
+                free(dBT_Node);
                 return;
             } else {
                 queue[++rear] = temp->right;
@@ -83,9 +83,9 @@ void deleteDeepestRightmostNode(Node *root, Node *dNode) {
         }
 
         if (temp->left != NULL) {
-            if (temp->left == dNode) {
+            if (temp->left == dBT_Node) {
                 temp->left = NULL;
-                free(dNode);
+                free(dBT_Node);
                 return;
             } else {
                 queue[++rear] = temp->left;
@@ -93,7 +93,7 @@ void deleteDeepestRightmostNode(Node *root, Node *dNode) {
         }
     }
 }
-void delete (Node** root, int data)
+void delete(BT_Node** root, int data)
 {
     if (*root == NULL) {
         printf("Tree is empty.\n");
@@ -107,22 +107,22 @@ void delete (Node** root, int data)
             return;
         }
         else {
-            printf("Node not found.\n");
+            printf("BT_Node not found.\n");
             return;
         }
     }
 
-    Node* temp;
-    Node* queue[100];
+    BT_Node* temp;
+    BT_Node* queue[100];
     int front = -1, rear = -1;
     queue[++rear] = *root;
-    Node* keyNode = NULL;
+    BT_Node* keyBT_Node = NULL;
 
     while (front != rear) {
         temp = queue[++front];
 
         if (temp->data == data) {
-            keyNode = temp;
+            keyBT_Node = temp;
         }
 
         if (temp->left != NULL) {
@@ -134,23 +134,23 @@ void delete (Node** root, int data)
         }
     }
 
-    if (keyNode != NULL) {
-        Node* deepestNode = getDeepestRightMostNode(*root);
-        keyNode->data = deepestNode->data;
-        deleteDeepestRightmostNode(*root, deepestNode);
+    if (keyBT_Node != NULL) {
+        BT_Node* deepestBT_Node = BT_getDeepestRightMost(*root);
+        keyBT_Node->data = deepestBT_Node->data;
+        deleteDeepestRightmost(*root, deepestBT_Node);
     }
     else {
-        printf("Node not found.\n");
+        printf("BT_Node not found.\n");
     }
 }
-Node* search(Node* root, const int data)
+BT_Node* BT_search(BT_Node* root, const int data)
 {
     if (root == NULL) {
         return NULL;
     }
 
-    Node* temp;
-    Node* queue[100];
+    BT_Node* temp;
+    BT_Node* queue[100];
     int front = -1, rear = -1;
     queue[++rear] = root;
 
@@ -171,13 +171,13 @@ Node* search(Node* root, const int data)
     }
     return NULL;
 }
-void traversal(const Node* root)
+void BT_traversal(const BT_Node* root)
 {
     if (root == NULL) {
         return;
     }
 
-    traversal(root->left);
+    BT_traversal(root->left);
     printf("%d ", root->data);
-    traversal(root->right);
+    BT_traversal(root->right);
 }
