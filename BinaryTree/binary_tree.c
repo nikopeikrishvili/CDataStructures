@@ -58,7 +58,7 @@ BT_Node *BT_getDeepestRightMost(BT_Node *root) {
     return temp;
 }
 
-void deleteDeepestRightmost(BT_Node *root, BT_Node *dBT_Node) {
+void BT_:w_coredumpdeleteDeepestRightmost(BT_Node *root, BT_Node *dBT_Node) {
     BT_Node *queue[100];
     int front = -1, rear = -1;
     queue[++rear] = root;
@@ -93,7 +93,7 @@ void deleteDeepestRightmost(BT_Node *root, BT_Node *dBT_Node) {
         }
     }
 }
-void delete(BT_Node** root, int data)
+void BT_delete(BT_Node** root, int data)
 {
     if (*root == NULL) {
         printf("Tree is empty.\n");
