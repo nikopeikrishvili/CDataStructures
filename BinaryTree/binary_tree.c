@@ -58,7 +58,7 @@ BT_Node *BT_getDeepestRightMost(BT_Node *root) {
     return temp;
 }
 
-void BT_:w_coredumpdeleteDeepestRightmost(BT_Node *root, BT_Node *dBT_Node) {
+void BT_deleteDeepestRightmost(BT_Node *root, BT_Node *dBT_Node) {
     BT_Node *queue[100];
     int front = -1, rear = -1;
     queue[++rear] = root;
@@ -137,7 +137,7 @@ void BT_delete(BT_Node** root, int data)
     if (keyBT_Node != NULL) {
         BT_Node* deepestBT_Node = BT_getDeepestRightMost(*root);
         keyBT_Node->data = deepestBT_Node->data;
-        deleteDeepestRightmost(*root, deepestBT_Node);
+        BT_deleteDeepestRightmost(*root, deepestBT_Node);
     }
     else {
         printf("BT_Node not found.\n");
