@@ -35,7 +35,7 @@ int main()
 
     // Searching for a node
     int target = 25;
-    BT_Node* searchResult = BT_search(&root, target);
+    BT_Node* searchResult = BT_search(root, target);
     if (searchResult != NULL) {
         printf("Node %d found in the BST.\n", target);
     }
